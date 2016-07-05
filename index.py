@@ -93,7 +93,13 @@ ratio = 0.8 # 80% of training set and 20% of testing set
 training = ts.to_sframe()[0:round(len(ts)*ratio)]
 testing = ts.to_sframe()[round(len(ts)*ratio):]
 
-# create decision tree with graphlab
+
+
+
+'''
+Multiple Machine Learning Classifiers
+'''
+# create DECISION TREE CLASSIFIER with graphlab
 max_tree_depth = 6
 decision_tree = gl.decision_tree_classifier.create(training, validation_set=None, 
                                                    target='outcome', features=l_features, 
@@ -101,7 +107,8 @@ decision_tree = gl.decision_tree_classifier.create(training, validation_set=None
 
 # display accuracy of the fitted model both with training set and testing set
 decision_tree.evaluate(training)['accuracy'], decision_tree.evaluate(testing)['accuracy']
-(0.6077348066298343, 0.577373211963589)
+# example response
+# (0.6077348066298343, 0.577373211963589)
 
 predictions = decision_tree.predict(testing)
 # and we add the predictions  column in testing set
@@ -117,7 +124,8 @@ pnl = testing[testing['predictions'] == 1]['gain'] # the gain column contains (C
 # (not expressed in dollars $)
 plot_equity_chart(pnl,'Decision tree model')
 
-# create LOGISTIC with graphlab
+
+# create LOGISTIC classifier with graphlab
 model = gl.logistic_classifier.create(training, target='outcome', features=l_features, 
                                       validation_set=None, verbose=False)
 predictions_prob = model.predict(testing, 'probability')
@@ -125,6 +133,7 @@ THRESHOLD = 0.6
 bt_2_2 = backtest_ml_model(testing, predictions_prob, target='outcome', 
                            threshold=THRESHOLD, STOP=-3, plot_title=model.name())
 backtest_summary(bt_2_2)
+
 
 # create LINEAR REGRESSION classifier
 model = gl.linear_regression.create(training, target='gain', features = l_lr_features,
@@ -134,6 +143,7 @@ predictions = model.predict(testing)
 # probabilities of success and normalize all values in order to have a vector of probabilities
 predictions_max, predictions_min = max(predictions), min(predictions)
 predictions_prob = (predictions - predictions_min)/(predictions_max - predictions_min)
+
 
 # create BOOSTED TREE classifier
 model = gl.boosted_trees_classifier.create(training, target='outcome', features=l_features, 
@@ -145,6 +155,7 @@ bt_4_2 = backtest_ml_model(testing, predictions_prob, target='outcome',
                            threshold=THRESHOLD, STOP=-3, plot_title=model.name())
 backtest_summary(bt_4_2)
 
+
 # create RANDOM FOREST classifier
 model = gl.random_forest_classifier.create(training, target='outcome', features=l_features, 
                                       validation_set=None, verbose=False, num_trees = 10)
@@ -153,5 +164,3 @@ THRESHOLD = 0.6
 bt_5_2 = backtest_ml_model(testing, predictions_prob, target='outcome', 
                            threshold=THRESHOLD, STOP=-3, plot_title=model.name())
 backtest_summary(bt_5_2)
-
-
