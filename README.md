@@ -51,22 +51,87 @@ or
 Read about running IPython notebook here:
 <http://opentechschool.github.io/python-data-intro/core/notebook.html>
 
+**Note**
+
+The functions and scripts in the file are not all supposed to be executed at once. The classifiers should be ran one at a time then the appropriate backtesting function and general analysis should be applied to each classfier/model one at a time.
+
 Analysis
 --------
 
 Each of the machine learning models/classifiers was used to calculate 4 values:
-* accuracy
-* precision
-* round turns
+* Accuracy
+* Precision
+* Round Turns
   * profit and loss for a complete daily trade
-* sharpe ratio
-  * value describing how much excess return you are receiving for the extra volatility that you endure for holding a risker asset
+* Sharpe Ratio
+  *Vvalue describing how much excess return you are receiving for the extra volatility that you endure for holding a risker asset
 
 Read more about Sharpe Ratios at <http://www.investopedia.com/articles/07/sharpe_ratio.asp>
 
-As a trading model, we want to increase the precision of our classifiers/models to reduce the number of false positives.
+As a trading model, we want to increase the precision of our classifiers/models to reduce the number of false positives in our predictions.
 
-Final Results from multiple machine learning models sorted by their precision
+#### Decision Tree
+```
+Mean of PnL is 118.244689 
+Sharpe is 6.523478
+Round turns 234
+Name: DecisionTree
+Accuracy: 0.560468140442
+Precision: 0.662393162393
+Recall: 0.374396135266
+Max Drawdown: -1769.00025
+```
+
+#### Logistic Classifier
+```
+Mean of PnL is 112.704215 
+Sharpe is 6.447859
+Round turns 426
+Name: LogisticClassifier
+Accuracy: 0.638491547464
+Precision: 0.659624413146
+Recall: 0.678743961353
+Max Drawdown: -1769.00025
+```
+
+#### Linear Regression
+```
+Mean of PnL is 138.868280 
+Sharpe is 7.650187
+Round turns 319
+Name: LinearRegression
+Accuracy: 0.631989596879
+Precision: 0.705329153605
+Recall: 0.54347826087
+Max Drawdown: -1769.00025
+```
+
+#### Boosted Tree
+```
+Mean of PnL is 112.002338
+Sharpe is 6.341981
+Round turns 214
+Name: BoostedTreesClassifier
+Accuracy: 0.563068920676
+Precision: 0.682242990654
+Recall: 0.352657004831
+Max Drawdown: -1769.00025
+```
+
+#### Random Forest
+```
+Mean of PnL is 114.786962 
+sharpe is 6.384243
+Round turns 311
+Name: RandomForestClassifier
+Accuracy: 0.598179453836
+Precision: 0.668810289389
+Recall: 0.502415458937
+Max Drawdown: -1769.00025
+```
+
+Final Results from multiple machine learning models sorted by their precision.
+
 | Model                    | Accuracy | Precision  | Round Turns | Sharpe  |
 | ------------------------ |:--------:| :---------:| :----------:|--------:|
 | Linear Regression        | 0.63     | 0.71       | 319         | 7.65    |
@@ -78,5 +143,6 @@ Final Results from multiple machine learning models sorted by their precision
 
 Conclusion
 ----------
-The linear regression model seemed to do 
+The linear regression model seemed to do the best of all the models in terms of Sharpe Ratio by far.
+Granted in the future when testing many parameters when creating the classifiers can still be tweaked to improve it like increasing the number of max_iterations.
 

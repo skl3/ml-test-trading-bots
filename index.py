@@ -93,9 +93,6 @@ ratio = 0.8 # 80% of training set and 20% of testing set
 training = ts.to_sframe()[0:round(len(ts)*ratio)]
 testing = ts.to_sframe()[round(len(ts)*ratio):]
 
-
-
-
 '''
 Multiple Machine Learning Classifiers
 '''
