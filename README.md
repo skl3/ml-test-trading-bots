@@ -51,7 +51,7 @@ or
 Read about running IPython notebook here:
 <http://opentechschool.github.io/python-data-intro/core/notebook.html>
 
-**Note**
+#### Note:
 
 The functions and scripts in the file are not all supposed to be executed at once. The classifiers should be ran one at a time then the appropriate backtesting function and general analysis should be applied to each classfier/model one at a time.
 
@@ -64,7 +64,7 @@ Each of the machine learning models/classifiers was used to calculate 4 values:
 * Round Turns
   * profit and loss for a complete daily trade
 * Sharpe Ratio
-  *Vvalue describing how much excess return you are receiving for the extra volatility that you endure for holding a risker asset
+  * value describing how much excess return you are receiving for the extra volatility that you endure for holding a risker asset
 
 Read more about Sharpe Ratios at <http://www.investopedia.com/articles/07/sharpe_ratio.asp>
 
